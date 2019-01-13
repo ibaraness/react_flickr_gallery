@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Paganation.scss';
 
 const Paganation = ({setPageNum, pageNum, pageCount}) => {
-    console.log("Paganation", pageNum)
     const pageNumbers = [];
     const offset = pageNum > 4 ? pageNum - 3: 1;
     const lastPAge = offset + 4;

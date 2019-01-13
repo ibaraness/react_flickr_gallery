@@ -32,11 +32,15 @@ class App extends Component {
     setImagePerPage(event){
         console.log("pageNum", event.target.value);
     }
+
+    onSearch(event){
+        console.log("search", event.target.value);
+    }
     
     render() {
         return(
             <div>
-                <Header setImagePerPage={this.setImagePerPage}></Header>
+                <Header setImagePerPage={this.setImagePerPage} onSearch={this.onSearch}></Header>
                 <ImageGalleryContainer setPageCount={this.setPageCount} pageNum={this.state.pageNum}></ImageGalleryContainer>
                 
                 <PaganationContainer setPageNum={this.setPageNum} pageCount={this.state.pageCount} pageNum={this.state.pageNum}></PaganationContainer>

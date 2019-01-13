@@ -7,7 +7,7 @@ import ImageTags from './../filters/tags/ImageTags';
 
 const Header = props => (
     <header className="header">
-        <ImageSearch></ImageSearch>
+        <ImageSearch onSearch={props.onSearch}></ImageSearch>
         <InfinateScrollToggle></InfinateScrollToggle>
         <ImagePerPage setImagePerPage={props.setImagePerPage}></ImagePerPage>
         
