@@ -1,6 +1,7 @@
 import { getPictures } from './../../rest-api/api';
 import React, { Component } from 'react';
 import ImageGallery from './../../components/image-gallery/ImageGallery';
+import _ from 'lodash';
 
 class ImageGalleryContainer extends Component {
 
@@ -18,31 +19,31 @@ class ImageGalleryContainer extends Component {
         getPictures({geo_context:2, text:"wild"}).then(data =>{
             console.log("data", data);
             this.setState({
-                pictures: data.photos.photo,
+                pictures: _.cloneDeep(data.photos.photo),
                 pageNum: data.photos.page,
-                pageCount: data.photos.pages,
+                pageCount: Math.floor(data.photos.photo.length / 3),
                 totalImages: +data.photos.total
             });
-            this.props.setPageCount(data.photos.pages);
+            this.props.setPageCount(this.state.pageCount);
         })
     }
 
-    componentWillReceiveProps(nextProps){
-        if(this.props.pageNum !== nextProps.pageNum){
-            console.log("nextProps, prevState", nextProps);
-            getPictures({geo_context:2, text:"wild", page:nextProps.pageNum}).then(data =>{
-                console.log("data", data);
-                this.setState({
-                    pictures: data.photos.photo,
-                    pageNum: data.page,
-                    pageCount: data.pages,
-                    totalImages: +data.total
-                });
-            })
-            return true;
-        }
-        return false;
-    }
+    // componentWillReceiveProps(nextProps){
+    //     if(this.props.pageNum !== nextProps.pageNum){
+    //         this.setState({pictures:[]});
+    //         getPictures({geo_context:2, text:"wild", page:nextProps.pageNum}).then(data =>{
+    //             console.log("data", data);
+    //             this.setState({
+    //                 pictures: _.cloneDeep(data.photos.photo),
+    //                 pageNum: data.page,
+    //                 pageCount: data.pages,
+    //                 totalImages: +data.total
+    //             });
+    //         })
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     componentDidUpdate(){
         
@@ -50,8 +51,13 @@ class ImageGalleryContainer extends Component {
 
     
     render() {
-
-        const pictures = this.state.pictures.map(photo => {
+        //TODO load pseudo images on start
+        const marker = (this.props.pageNum - 1) * 3;
+        const pictures = this.state.pictures
+            .filter((item, index)=>{
+                return index >= marker && index < (marker + 3)
+            })
+            .map(photo => {
             const src = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_z.jpg`;
             return {src, id:photo.id};
             //return <img key={photo.id} src={src} />

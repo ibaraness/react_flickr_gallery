@@ -4,11 +4,14 @@ import './Paganation.scss';
 const Paganation = ({setPageNum, pageNum, pageCount}) => {
     console.log("Paganation", pageNum)
     const pageNumbers = [];
-    for(let i = 1; i < 5; i++){
-        if(pageNum + i <= pageCount){
+    const offset = pageNum > 4 ? pageNum - 3: 1;
+    const lastPAge = offset + 4;
+    for(let i = offset; i < lastPAge; i++){
+        if(i <= pageCount){
+            const disabled = pageNum === i ? " disabled" : "";
             pageNumbers.push(
-                <li key={pageNum + i} className="paganation__pages__item">
-                <button className="paganation--btn" value={pageNum + i} onClick={setPageNum}>{pageNum + i}</button>
+                <li key={i} className={"paganation__pages__item" + disabled}>
+                <button className={"paganation--btn" + disabled} value={i} onClick={setPageNum}>{i}</button>
                 </li>);
         }
     } 

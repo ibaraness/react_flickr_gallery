@@ -7,7 +7,6 @@ export const CONFIG = {
             api_key: API_KEY,
             method: "flickr.photos.search",
             format: "json",
-            per_page: 3
         },
         requestHeaders: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8" },
         requestMethod: 'post',

@@ -90,22 +90,6 @@ body {
 	float: left;
 }
 
-//Gallery
-.image-gallery-items {
-	display: flex;
-	flex-flow: column;
-	width: 100vw;
-	position: relative;
-	left:-0.625rem;
-	.image-gallery-item {
-		width:100%;
-		height:calc((100vh - 100px)/3);
-		border: 0.625rem solid white;
-		border-bottom: none; 
-		background-color: black;
-		box-sizing: border-box;
-	}
-}
 @media(min-width:768px){
 	body {
 		padding: 0.625rem;
@@ -113,14 +97,5 @@ body {
 	.header {
 		position: relative;
 	}
-	.image-gallery-items{
-
-		flex-flow: row;
-		.image-gallery-item {
-			// width:320px;
-			height:400px;
-		}
-	}
 }
-//Paganation
 
