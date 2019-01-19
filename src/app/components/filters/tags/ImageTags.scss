@@ -1,0 +1,49 @@
+.tags.header__filter {
+    height:auto;
+    display: flex;
+}
+.tags__addition {
+    position: relative;
+}
+.tags__addition__input {
+	display: inline-block;
+    height: 2.125em;
+    font-size: 1rem;
+    vertical-align: top;
+    border-radius: 1.25em;
+	border: 1px solid #999;
+	margin-top: 0.3125em;
+    padding-left: 0.625em;
+    outline: none;
+}
+.tags__addition__button {
+    position: absolute;
+    right: 6px;
+    top: 15px;
+    z-index: 2;
+    color: #9E9E9E;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+    background: none;
+}
+.tags__list {
+	display: inline-block;
+    padding: 0.3125em;
+    margin: 0 0.75em;
+    overflow: hidden;
+    overflow-y: scroll;
+    width: 270px;
+    height: 40px;
+    border: 1px solid #fff;
+}
+.tags__delete-button {
+	margin-left: 0.3125em;
+}
+.tags__list__item {
+	float: left;
+	border: 1px solid #fff;
+    border-radius: 0.1875em;
+	padding: 0.125em;
+	color: #fff;
+}

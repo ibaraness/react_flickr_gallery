@@ -8,6 +8,11 @@ export const CONFIG = {
             method: "flickr.photos.search",
             format: "json",
         },
+        defaultFilters: {
+            sort :"relevance",
+            privacy_filter: 1, 
+            tags: ["outdoors"]
+        },
         requestHeaders: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8" },
         requestMethod: 'post',
         url: API_END_POINT

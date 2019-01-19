@@ -1,13 +1,12 @@
 .image-gallery-items {
 	display: flex;
 	flex-flow: column;
-	width: 100vw;
-	position: relative;
-	left:-0.625rem;
+	width: 100%;
 }
 
 @media(min-width:768px){
 	.image-gallery-items{
 		flex-flow: row;
+		flex-wrap: wrap;
 	}
 }

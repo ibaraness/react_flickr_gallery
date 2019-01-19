@@ -1,4 +1,27 @@
+.search {
+    position: relative;
+	display: inline-block;
+}
+.search__icon {
+	position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    color: #9E9E9E;
+}
+.search__input {
+    width: 200px;
+    padding: 0.8125em;
+    display: inline-block;
+    border-radius: 1.5em;
+	border: 1px solid #e2e1e1;
+    font-size: 1rem;
+    outline: none;
+}
 .seacrh__buttom {
     border: none;
     font-size: 1rem;
+    outline: none;
+    background: none;
 }

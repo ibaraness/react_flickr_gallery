@@ -1,37 +1,21 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
-import './ImageGallery.scss';
-import {loadImagePromise} from './../../utils/general';
+import { loadImagePromise } from './../../utils/general';
+import './ImageGalleryItem.scss';
+import { LoadStatus} from './../../enums/load-status';
 
-class ImageGalleryItem extends Component {
-
-    constructor(props){
-        super(props);
-        this.state = {
-            loaded: false
-        }
+const ImageGalleryItem = ({src, loaded, imagesPerPage, pictureId, setSelectedById}) => {
+    const rowSize = imagesPerPage <= 6 ? "row" + imagesPerPage: "row6";
+    let styles = {};
+    if(loaded === LoadStatus.COMPLETE){
+        styles = { background:`url(${src})`, backgroundSize: 'cover',  backgroundPosition: 'center' } 
     }
-
-    componentDidMount(){
-        loadImagePromise(this.props.src).then(img => {
-            this.setState({loaded:true});
-        });
+    else if(loaded === LoadStatus.FAILD){
+        styles = { backgroundImage: "none", backgroundColor: "#000000"} 
     }
-    
-    render() {
-        let styles = {
-
-        };
-        if(this.state.loaded){
-            styles = {
-                background:`url(${this.props.src})`, 
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-            };
-        }
-        return(
-            <div className="image-gallery-item" style={styles}></div>
-        )
-    }
+    return(
+        <div className={"image-gallery-item " + rowSize} style={styles} onClick={()=>{
+            setSelectedById(pictureId);
+        }}></div>
+    );
 }
 export default ImageGalleryItem;

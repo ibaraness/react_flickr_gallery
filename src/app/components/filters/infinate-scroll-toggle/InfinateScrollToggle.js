@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-//import './ImageGallery.scss';
+import './InfinateScrollToggle.scss';
 
-const InfinateScrollToggle = props => (
-    <div className="infinate-scroll header__filter">
-        <input type="checkbox" />
-        <label className="header__filter__label">Infinate scroll</label>
-            
-        </div>
+const InfinateScrollToggle = ({setInfiniteScroll}) => (
+    <div className="infinate-scroll header__filter desktop_only">
+        <input type="checkbox"  onChange={(event) => {setInfiniteScroll(event.target.checked)}} />
+        <label className="header__filter__label">Infinate scroll</label>        
+    </div>
 );
 
 export default InfinateScrollToggle;

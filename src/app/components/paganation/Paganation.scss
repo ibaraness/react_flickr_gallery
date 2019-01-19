@@ -4,19 +4,19 @@
 
 	position: fixed;
     display: block;
-    height: 70px;
+    height: 4.375rem;
     bottom: 0;
     left: 0px;
     margin: 0;
     width: 100%;
-    line-height: 70px;
+    line-height: 4.375rem;
     background-color: white;
 }
 .paganation--btn {
     outline: none;
     background: none;
     border: none;
-	font-size: 20px;
+	font-size: 1.25rem;
     text-decoration: none;
     color: #2196F3;
     cursor: pointer;
@@ -27,14 +27,14 @@
 }
 .paganation__pages {
 	display: inline-block;
-    // vertical-align: bottom;
+    vertical-align: bottom;
 }
 .paganation__pages__item {
     float: left;
-    margin: 0 5px;
+    margin: 0 0.3125em;
 }
 .paganation__nav {
-	margin: 0 10px;
+	margin: 0 0.5em;
     // vertical-align: bottom
 }
 
@@ -42,6 +42,6 @@
 	.paganation {
 		margin: 0.625rem;
 		position: static;
-		line-height: 70px;
+		line-height: 4.375rem;
 	}
 }
