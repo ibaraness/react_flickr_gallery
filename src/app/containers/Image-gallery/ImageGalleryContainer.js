@@ -45,6 +45,13 @@ class ImageGalleryContainer extends Component {
                 totalImages: +data.photos.total
             });
             this.props.setPageCount(this.state.pageCount);
+        }).catch(e => {
+            this.setState({
+                pictures: [],
+                pageNum: 1,
+                pageCount: 0,
+                totalImages: 0
+            });
         });
     }
 
