@@ -19,3 +19,12 @@ The app will be showing 3 images by default and a blue header with 5 buttons
 * The second and the third buttons from the left, are the gallery type swicher. The default gallery is by pages, the second gallery with the grid icon is the infinite scroll gallery.
 * The forth button, when click will open a menu where you can set the number of images to showe on each page.
 * The fifth button, when clicked will open a menu that will allow you to add/delete tags. 
+
+### Regular gallery
+The regaular gallery simply loads a certain amount of images for each page. The regular gallery has paganation on the bottom. 
+
+### Infinite scroll gallery
+The infinaite scroll (havan't been checked on all resolutions) show grid of images from top to bottom and each time the user scrolls doen additonal images will be added and so on.
+
+## Limitations
+Currently im order for any images to be shown at least 1 tag or search phrase must be included.
