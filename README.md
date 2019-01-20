@@ -28,3 +28,6 @@ The infinaite scroll (havan't been checked on all resolutions) show grid of imag
 
 ## Limitations
 Currently im order for any images to be shown at least 1 tag or search phrase must be included.
+
+## Responsiveness
+The app is responsive and meant to be used by desktop or mobile screen
