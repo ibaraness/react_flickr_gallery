@@ -27,7 +27,7 @@ The regaular gallery simply loads a certain amount of images for each page. The 
 The infinaite scroll (havan't been checked on all resolutions) show grid of images from top to bottom and each time the user scrolls doen additonal images will be added and so on.
 
 ## Limitations
-Currently im order for any images to be shown at least 1 tag or search phrase must be included.
+Currently in order for any images to be shown at least 1 tag or search phrase must be included.
 
 ## Responsiveness
 The app is responsive and meant to be used by desktop or mobile screen
