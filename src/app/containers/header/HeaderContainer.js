@@ -14,6 +14,21 @@ class HeaderContainer extends Component {
         this.toggleTage = this.toggleTage.bind(this);
         this.toggleImagePerPAge = this.toggleImagePerPAge.bind(this);
         this.toggleSearch = this.toggleSearch.bind(this);
+        this.clickoutside = this.clickoutside.bind(this);
+    }
+
+    clickoutside(){
+        document.body.onclick = (event)=>{
+            if(!event.target.closest('.header')){
+                this.toggleImagePerPAge(false);
+                this.toggleSearch(false);
+                this.toggleTage(false);
+            }
+        }
+    }
+
+    componentDidMount(){
+        this.clickoutside();
     }
 
     toggleTage(state){
