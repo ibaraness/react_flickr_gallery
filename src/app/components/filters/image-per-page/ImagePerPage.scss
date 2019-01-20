@@ -1,5 +1,11 @@
 .image-per-page {
-	padding-top: 0.625rem;
+    padding: 0.625rem;
+    position: absolute;
+    top: 70px;
+    background-color: black;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
 }
 .image-per-page__dropdown {
 	color: #fff;

@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import ImageGallery from './../../components/image-gallery/ImageGallery';
 import { getPictures } from './../../rest-api/api';
 import ImageModalContainer from './../image-modal/ImageModalContainer';
+import { Config, CONFIG } from './../../config/config';
+import {generateFlickrBigImageURL, generateFlickrThumbURL} from './../../utils/general';
 
 class InfinateScroller extends Component {
 
@@ -26,6 +28,7 @@ class InfinateScroller extends Component {
 
     listenToWindowScroll(){
         window.onscroll = () => {
+            console.log("scrolling!");
             if(!this.state.hasMoreItems){
                 return;
             }
@@ -35,10 +38,10 @@ class InfinateScroller extends Component {
         }
     }
 
-    loadPictures(filters){
-        getPictures(filters).then(data =>{
+    loadPictures(filters, reset){
+        getPictures({ ...CONFIG.infiniteScroll.defaultFilters, ...filters}).then(data =>{
             this.setState({
-                pictures: _.cloneDeep(data.photos.photo),
+                pictures: reset ? [...data.photos.photo] : [...this.state.pictures, ...data.photos.photo],
                 pageNum: data.photos.page,
                 pageCount: Math.floor(data.photos.photo.length / this.props.imagesPerPage) || 1,
                 totalImages: +data.photos.total
@@ -48,57 +51,40 @@ class InfinateScroller extends Component {
     }
 
     componentDidMount(){
-        this.loadPictures({...this.props.filters, "per_page":50});
+        this.loadPictures(this.props.filters, true);
     }
 
     componentDidUpdate(prevProps, prevState){
         if(prevProps.filters !== this.props.filters){
-            this.loadPictures({...this.props.filters, "per_page":50});
+            this.loadPictures(this.props.filters, true);
         }
     }
 
     loadNextRow(){
-        const hasMoreItems = (24 * this.state.row + 1) < +this.state.totalImages;
-        if((24 * this.state.row + 1) >= this.state.pictures.length && this.state.pictures.length < +this.state.totalImages){
-            getPictures({"privacy_filter":1, "page":this.state.pageNum + 1,"min_upload_date": "2005-01-01T00:00:00.00", ...this.props.filters}).then(data =>{
-                console.log("data", data);
-                this.setState({
-                    pictures: this.state.pictures.concat(data.photos.photo),
-                    pageCount: Math.floor(data.photos.photo.length / this.props.imagesPerPage),
-                    pageNum: data.photos.page,
-                    totalImages: +data.photos.total
-                });
-                this.props.setPageCount(this.state.pageCount);
-            })
+        const imageNumOnView = CONFIG.infiniteScroll.image_per_page * this.state.row;
+        const hasMoreItems = (imageNumOnView + 1) < +this.state.totalImages;
+        if(imageNumOnView >= this.state.pictures.length && this.state.pictures.length < +this.state.totalImages){
+            this.loadPictures({...this.props.filters, page: this.state.pageNum + 1});
         }
-        console.log("hasMoreItems", hasMoreItems, (24 * this.state.row + 1), this.state.totalImages, this.state.pictures.length);
         this.setState({row: this.state.row + 1, hasMoreItems});
     }
 
     setSelectedById(id){
         const picture = this.state.pictures.find(picture => picture.id === id);
         if(picture){
-            const selectedImageSrc = `https://farm${picture.farm}.staticflickr.com/${picture.server}/${picture.id}_${picture.secret}_h.jpg`;
-            this.imageModal.current.openModal(selectedImageSrc);
+            this.imageModal.current.openModal(generateFlickrBigImageURL(picture));
         }
     }
 
     render() {
 
         const pictures = this.state.pictures
-            .filter((item, index)=>{
-                return index < (this.state.row * 24)
-            })
-            .map(photo => {
-            const src = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_z.jpg`;
-            return {src, id:photo.id};
-            //return <img key={photo.id} src={src} />
-        });
-        const loader = <div className="loader">Loading ...</div>;
+            .filter((item, index) => index < (this.state.row * CONFIG.infiniteScroll.image_per_page))
+            .map(picture => ({src: generateFlickrThumbURL(picture), id:picture.id}));
 
         return(
             <div>
-                <ImageGallery setSelectedById={this.setSelectedById} imagesPerPage={4} pictures={pictures}></ImageGallery>
+                <ImageGallery setSelectedById={this.setSelectedById} imagesPerPage={24} pictures={pictures}></ImageGallery>
                 <ImageModalContainer ref={this.imageModal}></ImageModalContainer>
             </div>   
         )

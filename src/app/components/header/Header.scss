@@ -17,7 +17,25 @@
     margin-left: 0.5625em;
     height: 2.5625em;
 }
-
+.header__filter--button {
+    font-size: 30px;
+    width:60px;
+    color: white;
+    background: transparent;
+    border: none;
+    padding: 0;
+    outline: none;
+    margin: 13px 10px 0 10px;
+    text-align: center;
+    cursor: pointer;
+    &.disabled {
+        color: #80c9ff;
+    }
+}
+.header__filter--button__label{
+    display: none;
+    font-size:12px;
+}
 .header__filter__label {
 	color: #fff;
     font-size: 1.5rem;
@@ -36,7 +54,10 @@
 	
 	.header {
 		position: relative;
-	}
+    }
+    .header__filter--button__label {
+        display: block;
+    }
 }
 @media(max-width:1200px){
     

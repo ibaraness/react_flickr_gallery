@@ -5,6 +5,8 @@ import _ from 'lodash';
 import InfiniteScroll from 'react-infinite-scroller';
 import { CONFIG } from './../../config/config';
 import ImageModalContainer from './../image-modal/ImageModalContainer';
+import {generateFlickrBigImageURL, generateFlickrThumbURL} from './../../utils/general';
+import './ImageGalleryContainer.scss';
 
 class ImageGalleryContainer extends Component {
 
@@ -49,8 +51,7 @@ class ImageGalleryContainer extends Component {
     setSelectedById(id){
         const picture = this.state.pictures.find(picture => picture.id === id);
         if(picture){
-            const selectedImageSrc = `https://farm${picture.farm}.staticflickr.com/${picture.server}/${picture.id}_${picture.secret}_h.jpg`;
-            this.imageModal.current.openModal(selectedImageSrc);
+            this.imageModal.current.openModal(generateFlickrBigImageURL(picture));
         }
     }
 
@@ -58,14 +59,13 @@ class ImageGalleryContainer extends Component {
         const marker = (this.props.pageNum - 1) * +this.props.imagesPerPage;
         const pictures = this.state.pictures
             .filter((item, index)=> index >= marker && index < (+marker + +this.props.imagesPerPage))
-            .map(picture => {
-                const src = `https://farm${picture.farm}.staticflickr.com/${picture.server}/${picture.id}_${picture.secret}_z.jpg`;
-                return {src, id:picture.id};
-            });
+            .map(picture => ({src: generateFlickrThumbURL(picture), id:picture.id}));
+        const searchText = this.props.filters.text || "";
         return(
             <div>
-            <ImageGallery setSelectedById={this.setSelectedById} imagesPerPage={this.props.imagesPerPage} pictures={pictures}></ImageGallery>
-            <ImageModalContainer ref={this.imageModal}></ImageModalContainer>
+                <h4 className="image-gallery__info">Found {this.state.totalImages} results {searchText !== "" ? " of \"" + searchText +"\"" : ""}</h4>
+                <ImageGallery setSelectedById={this.setSelectedById} imagesPerPage={this.props.imagesPerPage} pictures={pictures}></ImageGallery>
+                <ImageModalContainer ref={this.imageModal}></ImageModalContainer>
             </div>
         )
     }

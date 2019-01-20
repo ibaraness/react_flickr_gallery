@@ -6,9 +6,6 @@ body {
 }
 
 @media(max-width:767px){
-	.desktop_only {
-		display: none !important;
-	}
 	/* Header and footer offset */
 	body {
 		padding:4.375rem 0.625rem; 

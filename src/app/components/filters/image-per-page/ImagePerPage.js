@@ -7,7 +7,7 @@ const ImagePerPage = ({setImagePerPage, imagesPerPage}) => {
         options.push(<option key={i} value={i}>{i}</option>)
     }
     return (
-    <div className="image-per-page header__filter desktop_only">
+    <div className="image-per-page ">
         <label className="header__filter__label">Images per page:</label>
         <select className="image-per-page__dropdown" value={imagesPerPage} onChange={(event)=>{
             setImagePerPage(event.target.value);

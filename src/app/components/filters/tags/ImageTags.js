@@ -20,7 +20,7 @@ const ImageTags = ({tagItems, addTag, deleteTag}) => {
         }
     }
 
-    return (<div className="tags header__filter">
+    return (<div className="tags">
         <div className="tags__addition">
             <button className="tags__addition__button fas fa-plus-circle" onClick={onAddTag}></button>
             <input className="tags__addition__input" id="tagTextInput" type="text" onKeyUp={(event)=>{

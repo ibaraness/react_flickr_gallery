@@ -1,9 +1,16 @@
-.tags.header__filter {
+.tags {
     height:auto;
-    display: flex;
+    position: absolute;
+    top: 70px;
+    background-color: black;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
 }
 .tags__addition {
     position: relative;
+    margin: 0 0.75em 10px 0.75em;
 }
 .tags__addition__input {
 	display: inline-block;
@@ -18,7 +25,7 @@
 }
 .tags__addition__button {
     position: absolute;
-    right: 6px;
+    left: 143px;
     top: 15px;
     z-index: 2;
     color: #9E9E9E;
@@ -28,16 +35,16 @@
     background: none;
 }
 .tags__list {
-	display: inline-block;
+	display: block;
     padding: 0.3125em;
     margin: 0 0.75em;
     overflow: hidden;
     overflow-y: scroll;
-    width: 270px;
     height: 40px;
     border: 1px solid #fff;
 }
 .tags__delete-button {
+    color: #ffffff;
 	margin-left: 0.3125em;
 }
 .tags__list__item {

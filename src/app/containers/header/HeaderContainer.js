@@ -7,22 +7,39 @@ class HeaderContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
-            menuActive: false
+            showSearch: false, 
+            showImagesPerPAge: false, 
+            showTags: false
         }
-        this.toggleMenu = this.toggleMenu.bind(this);
+        this.toggleTage = this.toggleTage.bind(this);
+        this.toggleImagePerPAge = this.toggleImagePerPAge.bind(this);
+        this.toggleSearch = this.toggleSearch.bind(this);
     }
 
-    toggleMenu(){
-        this.setState({menuActive: !this.state.menuActive});
+    toggleTage(state){
+        this.setState({showTags: !!state});
     }
+
+    toggleImagePerPAge(state){
+        this.setState({showImagesPerPAge: !!state});
+    }
+
+    toggleSearch(state){
+        this.setState({showSearch: !!state});
+    }
+
 
     render() {
         return(
             <Header
                 {...this.props}
-                toggleMenu={this.toggleMenu}
-                menuActive={this.state.menuActive}
-                onSearchKeyUp={this.onSearchKeyUp}
+                showSearch = {this.state.showSearch}
+                showImagesPerPAge = {this.state.showImagesPerPAge}
+                showTags = {this.state.showTags}
+                onSearchKeyUp = {this.onSearchKeyUp}
+                toggleTage = {this.toggleTage}
+                toggleSearch = {this.toggleSearch}
+                toggleImagePerPAge= {this.toggleImagePerPAge}
                 >
             </Header>
         )

@@ -16,5 +16,11 @@ export const CONFIG = {
         requestHeaders: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8" },
         requestMethod: 'post',
         url: API_END_POINT
+    },
+    infiniteScroll: {
+        image_per_page: 24,
+        defaultFilters: {
+            "per_page":50
+        }
     }
 }

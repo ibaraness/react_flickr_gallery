@@ -75,8 +75,10 @@ class App extends Component {
             <div>
                 <HeaderContainer 
                     setImagePerPage={this.setImagePerPage} 
-                    onSearch={this.onSearch} 
+                    onSearch={this.onSearch}
+                    searchItem={this.state.filters.text || ""}
                     setInfiniteScroll={this.setInfiniteScroll}
+                    inifinateScroll={this.state.inifinateScroll}
                     tags={this.state.filters.tags}
                     addTag={this.addTag}
                     deleteTag={this.deleteTag}
